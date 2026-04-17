@@ -9,7 +9,7 @@ const Footer = () => {
             <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 mb-2">
               BookVerse
             </h2>
-            <p className="text-gray-500 text-sm">© 2024 BookVerse. All rights reserved.</p>
+            <p className="text-gray-500 text-sm">© 2026 BookVerse. All rights reserved.</p>
           </div>
 
           <div className="flex gap-8 text-sm text-gray-400">

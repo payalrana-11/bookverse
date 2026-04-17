@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Menu, X, BookOpen, Search as SearchIcon } from "lucide-react";
 
 const Navbar = ({ currentView, onChangeView, onScrollToSection }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);     //is hamburger menu open in mobile screen
 
   const handleNavClick = (view, sectionId) => {
     onChangeView(view);
@@ -33,7 +33,7 @@ const Navbar = ({ currentView, onChangeView, onScrollToSection }) => {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => handleNavClick("home", "hero")}
+              onClick={() => handleNavClick("home", "hero")}       //text gray and white on hovering
               className={`text-sm font-medium transition-colors ${
                 currentView === "home" ? "text-white" : "text-gray-400 hover:text-white"
               }`}

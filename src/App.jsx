@@ -22,13 +22,13 @@ function App() {
   useEffect(() => {
     const stored = localStorage.getItem('bookverse_favorites');
     if (stored) {
-      setFavorites(JSON.parse(stored));
+      setFavorites(JSON.parse(stored));                                        //string to array
     }
   }, []);
 
   // Save favorites to localStorage
   useEffect(() => {
-    localStorage.setItem('bookverse_favorites', JSON.stringify(favorites));
+    localStorage.setItem('bookverse_favorites', JSON.stringify(favorites));        //array to string
   }, [favorites]);
 
   // Load popular books
@@ -45,9 +45,9 @@ function App() {
     const exists = favorites.some((b) => b.id === book.id);
 
     if (exists) {
-      setFavorites(favorites.filter((b) => b.id !== book.id));
+      setFavorites(favorites.filter((b) => b.id !== book.id));    //remove from fav
     } else {
-      setFavorites([...favorites, book]);                 //spread operator
+      setFavorites([...favorites, book]);                 //spread operator : purana data copy krke new book
     }
   };
 
@@ -55,14 +55,14 @@ function App() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-    }
+    }                                                        //navbar to hero and all sections smoothly
   };
 
   const isFavorite = (id) => favorites.some((b) => b.id === id);
 
   const handleBookClick = (book) => {
     setSelectedBook(book);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0);                                               //detail screen open and scroll to top
   };
 
   // Handle main view rendering
@@ -126,42 +126,39 @@ function App() {
           </div>
 
           {/* Horizontal Scroll */}
-          <div className="flex overflow-x-auto gap-6 px-4 sm:px-6 lg:px-8 pb-8 snap-x hide-scrollbar">
-            {popularBooks.map((book) => (
-              <div key={book.id} className="min-w-[200px] md:min-w-[240px] snap-center">
-                <BookCard
-                  book={book}
-                  isFavorite={isFavorite(book.id)}
-                  onToggleFavorite={toggleFavorite}
-                  onClick={handleBookClick}
-                  compact
-                />
-              </div>
-            ))}
-          </div>
+          {popularBooks.length > 0 ? (
+            <div className="flex overflow-x-auto gap-6 px-4 sm:px-6 lg:px-8 pb-8 snap-x hide-scrollbar">
+              {popularBooks.map((book) => (
+                <div key={book.id} className="min-w-[200px] md:min-w-[240px] snap-center">
+                  <BookCard
+                    book={book}
+                    isFavorite={isFavorite(book.id)}
+                    onToggleFavorite={toggleFavorite}
+                    onClick={handleBookClick}
+                    compact
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-12 text-center text-gray-400 mx-4 sm:mx-6 lg:mx-8">
+              <p className="text-lg font-medium text-white mb-2">No bestsellers available right now.</p>
+              <p className="max-w-2xl mx-auto">
+                We couldn’t load the trending books at the moment. Please refresh the page or come back shortly.
+              </p>
+            </div>
+          )}
         </section>
 
         {/* Favorites Section */}
-        {favorites.length > 0 && (
-          <section
-            id="favorites"
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <Heart className="text-orange-500" />
-              <h2 className="text-3xl font-bold text-white">
-                Your Favorites
-              </h2>
-              <div className="h-px bg-white/10 flex-grow ml-4"></div>
-            </div>
-
-            <Favorites
-              books={favorites}
-              onToggleFavorite={toggleFavorite}
-              onBookClick={handleBookClick}
-            />
-          </section>
-        )}
+        <section id="favorites" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <Heart className="text-orange-500" />
+            <h2 className="text-3xl font-bold text-white">Your Favorites</h2>
+            <div className="h-px bg-white/10 flex-grow ml-4"></div>
+          </div>
+          <Favorites books={favorites} onToggleFavorite={toggleFavorite} onBookClick={handleBookClick} />
+        </section>
       </main>
     );
   };

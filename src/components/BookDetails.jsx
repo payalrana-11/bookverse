@@ -14,9 +14,9 @@ const BookDetails = ({ book, onBack, isFavorite, onToggleFavorite }) => {
   } = book.volumeInfo;
 
   const thumbnail =
-    imageLinks?.thumbnail?.replace('http:', 'https:') ||
-    imageLinks?.smallThumbnail?.replace('http:', 'https:') ||
-    'https://picsum.photos/300/450';
+    imageLinks?.thumbnail?.replace('http:', 'https:') ||              //official big image
+    imageLinks?.smallThumbnail?.replace('http:', 'https:') ||          // small thumbnail
+    'https://picsum.photos/300/450';                                 //random picsum image
 
   // Remove HTML tags from description
   const cleanDescription =

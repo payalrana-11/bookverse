@@ -4,7 +4,7 @@ import BookCard from './BookCard';
 import { ArrowLeft, Search as SearchIcon, Loader2 } from 'lucide-react';
 
 function Search({ onBack, favorites, onToggleFavorite, onBookClick }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('');          //typing in search bar
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
