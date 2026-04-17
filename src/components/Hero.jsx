@@ -44,7 +44,7 @@ const Hero = ({ onDiscoverClick }) => {
               <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur opacity-30 animate-pulse"></div>
 
               <img
-                src="/bookimg.jpeg"
+                src={`${import.meta.env.BASE_URL}bookimg.jpeg`}
                 alt="Reading Atmosphere"
                 className="relative rounded-2xl shadow-2xl border border-white/10 w-full object-cover aspect-[4/3]"
               />
